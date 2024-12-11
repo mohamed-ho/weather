@@ -46,10 +46,12 @@ class Search extends StatelessWidget {
                 ),
               );
             } else if (state is WeatherSuccess) {
-              Provider.of<WeatherProvider>(context, listen: false).weather =
-                  state.weather;
-              Provider.of<WeatherProvider>(context, listen: false).city =
-                  cityName;
+              // Provider.of<WeatherProvider>(context, listen: false).weather =
+              //     state.weather;
+              // print(cityName);
+              // print('-----------------------------');
+              // Provider.of<WeatherProvider>(context, listen: false).city =
+              //     cityName;
               Navigator.pop(context);
               return const Center(
                 child: CircularProgressIndicator(),
@@ -58,6 +60,7 @@ class Search extends StatelessWidget {
               return SearchWidget(
                 onSubmitted: (value) {
                   cityName = value;
+
                   BlocProvider.of<WeatherCubit>(context)
                       .getWeather(cityName: cityName!);
                 },
@@ -69,4 +72,3 @@ class Search extends StatelessWidget {
     );
   }
 }
-
